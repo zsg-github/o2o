@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.njupt.o2o.dao.ShopDao">
+    <resultMap id="shopMap" type="com.njupt.o2o.entity.Shop">
+        <id column="shop_id" property="shopId"/>
+        <result column="shop_name" property="shopDName"/>
+        <result column="shop_desc" property="shopDesec"/>
+        <result column="shop_addr" property="shopAddr"/>
+        <result column="phone" property="phone"/>
+        <result column="shop_img" property="shopImg"/>
+        <result column="priority" property="priority"/>
+        <result column="create_time" property="createTime"/>
+        <result column="last_edit_time" property="lastEditTime"/>
+        <result column="enable_status" property="enableStatus"/>
+        <result column="advice" property="advice"/>
+        <association property="area" column="area_id" javaType="com.njupt.o2o.entity.Area">
+            <id column="areaId" property="areaId"/>
+            <result column="area_name" property="areaName"/>
+        </association>
+
+        <association column="shop_category_id" property="shopCategory" javaType="com.njupt.o2o.entity.ShopCategory">
+            <id column="shop_category_id" property="shopCategoryId"/>
+            <result column="shop_category_name" property="shopCategoryName"/>
+        </association>
+
+        <association column="user_id" property="owner" javaType="com.njupt.o2o.entity.PersonInfo">
+            <id column="user_id" property="userId"/>
+            <result column="user_name " property="userName"/>
+        </association>
+    </resultMap>
+
+    <select id="queryByShopId" resultMap="shopMap" parameterType="Long">
+        SELECT
+            ts.shop_id,
+            ts.shop_name,
+            ts.shop_desc,
+            ts.shop_addr,
+            ts.phone,
+            ts.shop_img,
+            ts.priority,
+            ts.create_time,
+            ts.last_edit_time,
+            ts.enable_status,
+            ts.advice,
+            ts.area_id,
+            taa.area_id,
+            taa.area_name,
+            tsc.shop_category_id,
+            tsc.shop_category_name
+        FROM
+            tb_shop AS ts,
+            tb_shop_category AS tsc,
+            tb_area AS taa
+        WHERE
+            ts.shop_category_id = tsc.shop_category_id
+        AND ts.area_id = taa.area_id
+        AND ts.shop_id = #{shopId}
+    </select>
+
+
+    <!--主要是在主键是自增的情况下，添加成功后可以直接使用主键值，其中keyProperty的值是对象的属性值不是数据库表中的字段名,
+    这样设置可以直接在前端的到shopId的值：shop.getShopId()，而调用函数返回的是数据库操作影响的行数-->
+    <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shop.shopId"
+            parameterType="com.njupt.o2o.entity.Shop">
+        INSERT INTO tb_shop (
+        owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr,phone,shop_img,priority,create_time,
+        last_edit_time,enable_status,advice
+        )VALUES(#{shop.owner.userId},#{shop.area.areaId},#{shop.shopCategory.shopCategoryId},#{shop.shopName},#{shop.shopDesc},#{shop.shopDesc},#{shop.phone},#{shop.shopImg},
+            #{shop.priority},#{shop.createTime},#{shop.lastEditTime},#{shop.enableStatus},#{shop.advice}
+        );
+    </insert>
+
+    <update id="updateShop">
+        update tb_shop
+        <set>
+            <if test="shop.shopName != null">shop_name = #{shop.shopName},</if>
+            <if test="shop.shopDesc != null">shop_desc = #{shop.shopDesc},</if>
+            <if test="shop.shopAddr != null">shop_addr = #{shop.shopAddr},</if>
+            <if test="shop.phone != null">phone = #{shop.phone},</if>
+            <if test="shop.shopImg != null">shop_img = #{shop.shopImg},</if>
+            <if test="shop.priority != null">priority = #{shop.priority},</if>
+            <if test="shop.lastEditTime != null">last_edit_time = #{shop.lastEditTime},</if>
+            <if test="shop.enableStatus != null">enable_status = #{shop.enableStatus},</if>
+            <if test="shop.advice != null">advice = #{shop.advice},</if>
+            <if test="shop.area != null">area_id = #{shop.area.areaId},</if>
+            <if test="shop.shopCategory != null">shop_category_id = #{shop.shopCategory.shopCategoryId}</if>
+        </set>
+        where shop_id = #{shop.shopId}
+    </update>
+
+
+</mapper>

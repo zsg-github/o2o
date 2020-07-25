@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.njupt.o2o.dao.AreaDao">
+
+    <!--id为mapper类中对应方法名，resultType为定义的接收类型，一般为对应实体类-->
+    <select id="queryArea" resultType="com.njupt.o2o.entity.Area">
+        SELECT
+            area_id,
+            area_name,
+            priority,
+            create_time,
+            last_edit_time
+        FROM
+            tb_area
+        ORDER BY
+            priority DESC
+
+    </select>
+
+</mapper>

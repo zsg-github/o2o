@@ -1,0 +1,8 @@
+2020-07-22 15:15:06.715 [main] DEBUG com.njupt.o2o.dao.ShopDao.insertShop - ==>  Preparing: INSERT INTO tb_shop ( owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr,phone,shop_img,priority,create_time, last_edit_time,enable_status,advice )VALUES(?,?,?,?,?,?,?,?, ?,?,?,?,? ); 
+2020-07-22 15:15:06.841 [main] DEBUG com.njupt.o2o.dao.ShopDao.insertShop - ==> Parameters: 1(Long), 2(Integer), 1(Long), 蜜雪冰城(String), 好喝(String), 好喝(String), 2314u98325(String), null, 1(String), 2020-07-22 15:15:04.55(Timestamp), 2020-07-22 15:15:04.55(Timestamp), 0(Integer), 来啊(String)
+2020-07-22 15:15:06.854 [main] DEBUG com.njupt.o2o.dao.ShopDao.insertShop - <==    Updates: 1
+2020-07-22 15:15:06.891 [main] DEBUG com.njupt.o2o.util.ImageUtil - current relativePath: upload\item\shop\71\1534120200722151506.jpg
+2020-07-22 15:15:06.892 [main] DEBUG com.njupt.o2o.util.ImageUtil - current completePath: D:\o20ProjectDev\image\upload\item\shop\71\1534120200722151506.jpg
+2020-07-22 15:15:07.357 [main] DEBUG com.njupt.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name = ?, shop_desc = ?, shop_addr = ?, phone = ?, shop_img = ?, priority = ?, last_edit_time = ?, enable_status = ?, advice = ?, area_id = ?, shop_category_id = ? where shop_id = ? 
+2020-07-22 15:15:07.359 [main] DEBUG com.njupt.o2o.dao.ShopDao.updateShop - ==> Parameters: 蜜雪冰城(String), 好喝(String), test1111111(String), 2314u98325(String), upload\item\shop\71\1534120200722151506.jpg(String), 1(String), 2020-07-22 15:15:04.55(Timestamp), 0(Integer), 来啊(String), 2(Integer), 1(Long), 71(Long)
+2020-07-22 15:15:07.363 [main] DEBUG com.njupt.o2o.dao.ShopDao.updateShop - <==    Updates: 1

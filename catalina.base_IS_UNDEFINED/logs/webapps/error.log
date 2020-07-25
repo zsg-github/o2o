@@ -1,0 +1,48 @@
+2020-07-21 15:46:45.296 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 15:51:26.094 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 15:51:53.483 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:05:28.474 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 16:07:16.050 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 16:20:36.672 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:21:16.669 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:21:58.176 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:27:42.364 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:29:51.902 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:30:54.790 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:31:59.488 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:33:29.614 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:34:01.238 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:34:25.914 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:34:58.656 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:39:17.212 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 16:42:48.938 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:48:42.299 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 16:50:43.191 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 18:03:35.047 [main] ERROR com.njupt.o2o.util.ImageUtil - javax.imageio.IIOException: Can't read input file!
+2020-07-21 18:11:01.266 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 18:11:32.375 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 18:14:46.954 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 18:15:36.862 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 18:19:01.043 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:05:33.811 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:21:27.426 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:22:57.698 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:24:36.617 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:25:23.386 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:28:54.824 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:31:57.984 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:40:15.012 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:41:56.510 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:43:51.109 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:45:29.943 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:46:17.698 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:47:55.592 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 20:51:46.851 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:01:24.922 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:09:05.157 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:12:08.728 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:12:47.337 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:14:38.463 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:17:26.181 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:17:52.018 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg
+2020-07-21 21:19:15.772 [main] ERROR com.njupt.o2o.util.ImageUtil - java.io.FileNotFoundException: Could not find file: D:\IDEA_workspace\o2o\abv.jpg

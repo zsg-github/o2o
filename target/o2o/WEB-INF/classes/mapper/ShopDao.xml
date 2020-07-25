@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.njupt.o2o.dao.ShopDao">
+
+    <!--主要是在主键是自增的情况下，添加成功后可以直接使用主键值，其中keyProperty的值是对象的属性值不是数据库表中的字段名,
+    这样设置可以直接在前端的到shopId的值：shop.getShopId()，而调用函数返回的是数据库操作影响的行数-->
+    <insert id="insertShop" useGeneratedKeys="true" keyColumn="shop_id" keyProperty="shop.shopId"
+    parameterType="com.njupt.o2o.entity.Shop">
+        INSERT INTO tb_shop (
+        owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr,phone,shop_img,priority,create_time,
+        last_edit_time,enable_status,advice
+        )VALUES(#{shop.owner.userId},#{shop.area.areaId},#{shop.shopCategory.shopCategoryId},#{shop.shopName},#{shop.shopDesc},#{shop.shopDesc},#{shop.phone},#{shop.shopImg},
+            #{shop.priority},#{shop.createTime},#{shop.lastEditTime},#{shop.enableStatus},#{shop.advice}
+        );
+    </insert>
+
+    <update id="updateShop">
+        update tb_shop
+        <set>
+            <if test="shop.shopName != null">shop_name = #{shop.shopName},</if>
+            <if test="shop.shopDesc != null">shop_desc = #{shop.shopDesc},</if>
+            <if test="shop.shopAddr != null">shop_addr = #{shop.shopAddr},</if>
+            <if test="shop.phone != null">phone = #{shop.phone},</if>
+            <if test="shop.shopImg != null">shop_img = #{shop.shopImg},</if>
+            <if test="shop.priority != null">priority = #{shop.priority},</if>
+            <if test="shop.lastEditTime != null">last_edit_time = #{shop.lastEditTime},</if>
+            <if test="shop.enableStatus != null">enable_status = #{shop.enableStatus},</if>
+            <if test="shop.advice != null">advice = #{shop.advice},</if>
+            <if test="shop.area != null">area_id = #{shop.area.areaId},</if>
+            <if test="shop.shopCategory != null">shop_category_id = #{shop.shopCategory.shopCategoryId}</if>
+        </set>
+        where shop_id = #{shop.shopId}
+    </update>
+
+
+
+</mapper>
