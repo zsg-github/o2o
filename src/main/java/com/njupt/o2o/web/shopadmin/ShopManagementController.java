@@ -101,9 +101,9 @@ public class ShopManagementController {
         }
         //2.注册商铺
         if (shop != null && shopImg != null) {
-            // PersonInfo owner = new PersonInfo();从session中获取登录用户
+            PersonInfo owner = new PersonInfo(); //从session中获取登录用户
             //Session TODO
-            PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
+            //PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
             owner.setUserId(1L);
             shop.setOwner(owner);
             try {
@@ -160,7 +160,8 @@ public class ShopManagementController {
         return modelMap;
     }
 
-
+    @RequestMapping(value = "/modifyshop", method = RequestMethod.POST)
+    @ResponseBody
     private Map<String, Object> modifyshop(HttpServletRequest request) {
         //返回体
         Map<String, Object> modelMap = new HashMap<>();
@@ -199,12 +200,71 @@ public class ShopManagementController {
                 } else {
                     se = shopService.modifyShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
                 }
+                if (se.getState() == ShopStateEnum.SUCCESS.getState()) {
+                    modelMap.put("success", true);
+                } else {
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", se.getStateInfo());
+                }
+
             } catch (Exception e) {
                 modelMap.put("success", true);
-                modelMap.put("errMsg", e.toString());
+                modelMap.put("errMsg", e.getMessage());
             }
+            return modelMap;
+        } else {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "请输入店铺id");
+            return modelMap;
         }
     }
 
+    @RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String, Object> getShopList(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<>();
+        PersonInfo user = new PersonInfo();
+        user.setUserId(1L);
+        user.setName("zsg");
+        request.getSession().setAttribute("user", user);
+        user = (PersonInfo) request.getSession().getAttribute("user");
+        List<Shop> shopList = new ArrayList<>();
+        try {
+            Shop shop = new Shop();
+            shop.setOwner(user);
+            ShopExecution se = shopService.getShopList(shop, 0, 100);
+            modelMap.put("shopList", se.getShopList());
+            modelMap.put("user", user);
+            modelMap.put("success", true);
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.getMessage());
+        }
+        return modelMap;
+    }
 
+    @RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String, Object> getShopManagementInfo(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<>();
+        long shopId = HttpServletRequestUtil.getLong(request, "shopId");
+        if (shopId <= 0) {
+            Object currentShopObj = request.getSession().getAttribute("currentShop");
+            if (currentShopObj == null) {
+                //没有权限，重定向
+                modelMap.put("redirect", true);
+                modelMap.put("url", "/shopadmin/shoplist");
+            } else {
+                Shop currentShop = (Shop) currentShopObj;
+                modelMap.put("redirect", false);
+                modelMap.put("shopId", currentShop.getShopId());
+            }
+        } else {
+            Shop currentShop = new Shop();
+            currentShop.setShopId(shopId);
+            request.getSession().setAttribute("currentShop", currentShop);
+            modelMap.put("redirect", false);
+        }
+        return modelMap;
+    }
 }

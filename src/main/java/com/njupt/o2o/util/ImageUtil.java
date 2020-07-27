@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -107,4 +108,23 @@ public class ImageUtil {
     }
 
 
+    public static void deleteFile(File filePath) {
+        if(filePath != null && filePath.exists()){
+            if(filePath.isFile()){
+                filePath.delete();
+            }else {
+                for(File f : filePath.listFiles()){
+                    deleteFile(f);
+                }
+            }
+            //最后删除目录
+            filePath.delete();
+        }
+
+    }
+
+    public static void deleteImg(String shopImg) {
+        File imgPath = new File(PathUtils.getImgBasePath()+shopImg);
+        deleteFile(imgPath);
+    }
 }

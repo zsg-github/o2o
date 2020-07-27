@@ -6,8 +6,8 @@
 <mapper namespace="com.njupt.o2o.dao.ShopDao">
     <resultMap id="shopMap" type="com.njupt.o2o.entity.Shop">
         <id column="shop_id" property="shopId"/>
-        <result column="shop_name" property="shopDName"/>
-        <result column="shop_desc" property="shopDesec"/>
+        <result column="shop_name" property="shopName"/>
+        <result column="shop_desc" property="shopDesc"/>
         <result column="shop_addr" property="shopAddr"/>
         <result column="phone" property="phone"/>
         <result column="shop_img" property="shopImg"/>
@@ -31,6 +31,56 @@
             <result column="user_name " property="userName"/>
         </association>
     </resultMap>
+
+    <select id="queryShopList" resultMap="shopMap">
+        SELECT
+            ts.shop_id,
+            ts.shop_name,
+            ts.shop_desc,
+            ts.shop_addr,
+            ts.phone,
+            ts.shop_img,
+            ts.priority,
+            ts.create_time,
+            ts.last_edit_time,
+            ts.enable_status,
+            ts.advice,
+            ts.area_id,
+            taa.area_id,
+            taa.area_name,
+            tsc.shop_category_id,
+            tsc.shop_category_name
+        FROM
+            tb_shop AS ts,
+            tb_shop_category AS tsc,
+            tb_area AS taa
+        <where>
+            <if test="shop.shopCategory != null and shop.shopCategory.shopCategoryId != null">
+                and ts.shop_category_id = #{shop.shopCategory.shopCategoryId}
+            </if>
+            <if test="shop.shopCategory != null and shop.shopCategory.parent != null and shop.shopCategory.parent.shopCategoryId != null">
+                and ts.shop_category_id in (select shop_category_id from tb_shop_category where parent_id = #{shop.shopCategory.parent.shopCategoryId})
+            </if>
+            <if test="shop.area != null and shop.area.areaId != null">
+                and ts.area_id = #{shop.area.areaId}
+            </if>
+            <if test="shop.shopName != null">
+                and ts.shop_name like  concat('%',#{shop.shopName},'%')
+            </if>
+            <if test="shop.enableStatus != null">
+                and ts.enable_status = #{shop.enableStatus}
+            </if>
+            <if test="shop.owner != null and shop.owner.userId != null" >
+                and ts.owner_id = #{shop.owner.userId}
+            </if>
+            and ts.area_id = taa.area_id
+            and ts.shop_category_id = tsc.shop_category_id
+        </where>
+        order by ts.priority desc
+        limit #{rowIndex},#{pageSize}
+    </select>
+
+
 
     <select id="queryByShopId" resultMap="shopMap" parameterType="Long">
         SELECT
@@ -58,6 +108,37 @@
             ts.shop_category_id = tsc.shop_category_id
         AND ts.area_id = taa.area_id
         AND ts.shop_id = #{shopId}
+    </select>
+
+    <select id="queryShopCount" resultType="int">
+        select
+            count(1)
+        from
+            tb_shop AS ts,
+            tb_shop_category AS tsc,
+            tb_area AS taa
+        <where>
+            <if test="shop.shopCategory != null and shop.shopCategory.shopCategoryId != null">
+                and ts.shop_category_id = #{shop.shopCategory.shopCategoryId}
+            </if>
+            <if test="shop.shopCategory != null and shop.shopCategory.parent != null and shop.shopCategory.parent.shopCategoryId != null">
+                and ts.shop_category_id in (select shop_category_id from tb_shop_category where parent_id = #{shop.shopCategory.parent.shopCategoryId})
+            </if>
+            <if test="shop.area != null and shop.area.areaId != null">
+                and ts.area_id = #{shop.area.areaId}
+            </if>
+            <if test="shop.shopName != null">
+                and ts.shop_name like  concat('%',#{shop.shopName},'%')
+            </if>
+            <if test="shop.enableStatus != null">
+                and ts.enable_status = #{shop.enableStatus}
+            </if>
+            <if test="shop.owner != null and shop.owner.userId != null" >
+                and ts.owner_id = #{shop.owner.userId}
+            </if>
+            and ts.area_id = taa.area_id
+            and ts.shop_category_id = tsc.shop_category_id
+        </where>
     </select>
 
 

@@ -123,7 +123,7 @@ $(function() {
 					$.toast('提交成功！');
 					if (!isEdit) {
 						// 若为注册操作，成功后返回店铺列表页
-						window.location.href = "/o2o/shopadmin/shoplist";
+						window.location.href = "/shopadmin/shoplist";
 					}
 				} else {
 					$.toast('提交失败！' + data.errMsg);
