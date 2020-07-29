@@ -13,9 +13,25 @@
         order by priority desc
     </select>
 
-    <!--id为mapper类中方法名-->
-    <insert id="">
-
+    <!--批量增加商品类别-->
+    <insert id="batchInsertProductCategory" parameterType="java.util.List">
+        insert into tb_product_category(product_category_name,priority,create_time,shop_id)
+        values
+        <!--如果传入的是单参数且类型是一个List/Array,collection属性值为list/array,item表示集合中每一个元素迭代是的别名，index表示每次迭代的位置-->
+        <foreach collection="list" item="productCategory" index="index" separator=",">
+            (
+            #{productCategory.productCategoryName},
+            #{productCategory.priority},
+            #{productCategory.createTime},
+            #{productCategory.shopId}
+            )
+        </foreach>
     </insert>
+
+    <delete id="deleteProductCategory">
+        delete from
+            tb_product_category
+        where product_category_id = #{productCategoryId} and shop_id = {shopId}
+    </delete>
 
 </mapper>

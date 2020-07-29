@@ -1,16 +1,14 @@
 package com.njupt.o2o.util;
+import com.njupt.o2o.dao.ImageHolder;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import sun.rmi.runtime.Log;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -43,9 +41,9 @@ public class ImageUtil {
      * 传入原图片地址（绝对路径），加工后把新图片存储到本机，并返回相对路径
      * 处理缩略图，并生成新图片的相对路径
      */
-    public static String generateThumbnail(InputStream shopImgInputStream, String fileName, String targetAddr){
+    public static String generateThumbnail(ImageHolder imageHolder, String targetAddr){
         String realFileName = getRandomFileName();
-        String extensionName = getFileExtension(fileName);
+        String extensionName = getFileExtension(imageHolder.getImageName());
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName +extensionName;
         logger.debug("current relativePath: " + relativeAddr);
@@ -55,7 +53,7 @@ public class ImageUtil {
         //将图片转换成Thumbnail对象处理文件后存到本机位置dest
         try{
             //没改正过来imgFile.getName()是错误的，导致只有文件名，最后被拼成：“D:/IDEA_workplace/o2o/abv.jpg，报错找不到文件
-            Thumbnails.of(shopImgInputStream).size(200,200)
+            Thumbnails.of(imageHolder.getImage()).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath+"/watermark.jpg")),0.2f)
                     .outputQuality(0.8f)
                     .toFile(dest);
@@ -126,5 +124,8 @@ public class ImageUtil {
     public static void deleteImg(String shopImg) {
         File imgPath = new File(PathUtils.getImgBasePath()+shopImg);
         deleteFile(imgPath);
+    }
+
+    public static void generateNormalImg(ImageHolder productImgHolder, String dest) {
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.njupt.o2o.dao.ProductDao">
+
+
+    <!--id为mapper类中方法名-->
+    <insert id="insertProduct" useGeneratedKeys="true" keyProperty="product.productId" keyColumn="product_id">
+        insert into tb_product (product_name,product_desc,img_addr,normal_price,promotion_price,priority,create_time
+        last_edit_time,enable_status,product_category_id,shop_id) values (
+        #{product.productName},#{product.Desc},#{product.imgAddr},#{product.nomalPrice},#{product.promotionPrice},
+        #{product.priority},#{product.createTime}#{product.lastEditTime},#{product.enableStatus},#{product.productCategory.productCategoryId},
+        #{product.shopId}
+        );
+
+    </insert>
+
+</mapper>

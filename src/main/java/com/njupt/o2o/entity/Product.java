@@ -7,6 +7,7 @@ public class Product {
     private Long productId;
     private String productName;
     private String productDesc;
+    //商品缩略图
     private String imgAddr;
     private String normalPrice;
     private String promotionPrice;

@@ -10,4 +10,16 @@ public interface ProductCategoryDao {
      * 通過shopId查詢店鋪商品類別
      */
     List<ProductCategory> queryProductCategoryList(@Param("shopId") long shopId);
+
+    /**
+     * 批量新增商品类别
+     * @param productCategoryList
+     * @return
+     */
+    int batchInsertProductCategory(List<ProductCategory> productCategoryList);
+
+    /**
+     * 删除指定商品类别
+     */
+    int deleteProductCategory(@Param("productCategoryId") long productCategoryId,@Param("shopId") long shopId);
 }

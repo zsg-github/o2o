@@ -1,5 +1,6 @@
 package com.njupt.o2o.service.impl;
 
+import com.njupt.o2o.dao.ImageHolder;
 import com.njupt.o2o.dao.ShopDao;
 import com.njupt.o2o.dto.ShopExecution;
 import com.njupt.o2o.entity.Shop;
@@ -25,7 +26,7 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     @Transient
-    public ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName) {
+    public ShopExecution addShop(Shop shop, ImageHolder imageHolder) {
         if (shop == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP);
         }
@@ -37,11 +38,11 @@ public class ShopServiceImpl implements ShopService {
             if (effectedNum <= 0) {
                 throw new ShopOperationException("店铺创建失败");
             } else {
-                if (shopImgInputStream != null) {
+                if (imageHolder.getImage() != null) {
                     //存储图片
                     try {
-                        //给shop.shopImg赋值
-                        addShopImg(shop, shopImgInputStream, fileName);
+                        //给shop.shopImg赋值,因为插入shop语句声明 useGeneratedKeys="true"，所以可得shopId
+                        addShopImg(shop, imageHolder);
                     } catch (Exception e) {
                         throw new ShopOperationException("addShopImg error" + e.getMessage());
                     }
@@ -58,28 +59,28 @@ public class ShopServiceImpl implements ShopService {
         return new ShopExecution(ShopStateEnum.CHECK, shop);
     }
 
-    private void addShopImg(Shop shop, InputStream shopImgInputStream, String fileName) {
+    private void addShopImg(Shop shop, ImageHolder imageHolder) {
         //获取shop图片目录的相对值路径:合成相对路径:/upload/item/shop/" + shopId + "/
         String targetAddr = PathUtils.getShopImagePath(shop.getShopId());
         //传入图片目录相对路径targetAddr将图片处理后保存到本机位置，并返回图片相对路径/upload/item/shop/" + shopId +/xxxxxx/+ "/picture.jpg
-        String shopImgAddr = ImageUtil.generateThumbnail(shopImgInputStream, fileName, targetAddr);
+        String shopImgAddr = ImageUtil.generateThumbnail(imageHolder, targetAddr);
         shop.setShopImg(shopImgAddr);
     }
 
 
     @Override
-    public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) {
+    public ShopExecution modifyShop(Shop shop, ImageHolder imageHolder) {
         if(shop == null ||shop.getShopId() == null){
             return new ShopExecution(ShopStateEnum.NULL_SHOP);
         }else {
             //1.判断是否需要处理图片
             try{
-                if (shopImgInputStream != null && fileName != null && !"".equals(fileName)){
+                if (imageHolder.getImage() != null && imageHolder.getImageName() != null && !"".equals(imageHolder.getImageName())){
                     Shop tempShop = shopDao.queryByShopId(shop.getShopId());
                     if(tempShop.getShopImg() != null){
                         ImageUtil.deleteImg(tempShop.getShopImg());
                     }
-                    addShop(shop,shopImgInputStream,fileName);
+                    addShop(shop,imageHolder);
                 }
                 //更新店铺信息
                 shop.setLastEditTime(new Date());

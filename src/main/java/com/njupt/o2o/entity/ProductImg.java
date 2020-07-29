@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ProductImg {
     private Long productImgId;
+    //详情图地址
     private String imgAddr;
     private String imgDesc;
     private Integer priority;
